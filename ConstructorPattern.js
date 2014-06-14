@@ -5,7 +5,7 @@ function User(name, age) {
     this.name = name;
     this.age = age;
     this.toString = function () {
-        return "Name: " + amit.name + "And Age: " + this.age;
+        return "Name: " + this.name + " And Age: " + this.age;
     };
 }
 
