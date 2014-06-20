@@ -11,24 +11,27 @@ function User(name, age) {
 
 var UserManagement = (function () {
     var users = [],
-        removeAll = function () {
-            users = [];
-            return "DONE";
-        };
-    return {
-        addUser: function (user) {
+        insert = function (user) {
             users.push(user);
         },
-        getUsers: function () {
+        getAll = function () {
             return users.slice();
         },
-        removeAllUsers: function (password) {
+        deleteAll = function () {
+            users = [];
+            return "DONE";
+        },
+        removeAll = function (password) {
             if (password == "amit") {
-                return removeAll();
+                return deleteAll();
             } else {
                 return "Wrong Password";
             }
-        }
+        };
+    return {
+        addUser: insert,
+        getUsers: getAll,
+        removeAllUsers: removeAll
     };
 })();
 
