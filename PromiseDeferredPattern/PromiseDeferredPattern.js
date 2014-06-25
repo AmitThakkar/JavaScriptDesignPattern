@@ -4,19 +4,38 @@
 (function () {
     "use strict";
 
-    var Q = require("../q");
+    var Q = require("../q"),
+        getUserName = function () {
+            var deferred = Q.defer(),
+                resolvedTime = Math.floor(Math.random() * 10000),
+                rejectTime = Math.floor(Math.random() * 10000),
+                processTotalTime = resolvedTime < rejectTime ? resolvedTime : rejectTime,
+                processSentInterval = processTotalTime / 10,
+                processed = 0;
+            setTimeout(function () {
+                deferred.resolve(["Amit", "PI", "Kushal"]);
+            }, resolvedTime);
+            setTimeout(function () {
+                deferred.reject(new Error("Server Error"));
+            }, rejectTime);
+            setTimeout(function a() {
+                deferred.notify(processed += 10);
+                if (processed < 90) {
+                    setTimeout(a, processSentInterval);
+                }
+            }, processSentInterval);
+            return deferred.promise;
+        },
+        successHandler = function (names) {
+            console.log("Names: ", names);
+        },
+        errorHandler = function (error) {
+            console.log("Error: ", error);
+        },
+        processHandler = function (progress) {
+            console.log("Process: ", progress, "%")
+        };
 
-    function getUserName() {
-        var deferred = Q.defer();
-        setTimeout(function () {
-            deferred.resolve(["Amit", "PI", "Kushal"]);
-        }, 2000);
-        return deferred.promise;
-    }
-
-    getUserName()
-        .then(function () {
-            console.log(arguments);
-        });
+    getUserName().then(successHandler, errorHandler, processHandler);
 })();
 
