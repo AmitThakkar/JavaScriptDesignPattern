@@ -1,6 +1,8 @@
 /**
  * Created by amit on 22/6/14.
  */
+"use strict";
+
 var Builder = (function () {
     var getPrice = function (floor, countOfRoom) {
         var price;

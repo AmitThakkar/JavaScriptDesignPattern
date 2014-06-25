@@ -1,6 +1,8 @@
 /**
  * Created by amit on 19/6/14.
  */
+"use strict";
+
 function User(name, age) {
     this.name = name;
     this.age = age;
