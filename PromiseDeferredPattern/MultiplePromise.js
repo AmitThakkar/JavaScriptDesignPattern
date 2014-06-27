@@ -24,7 +24,7 @@
     var promises = [];
     promises.push(getCompanyName());
     promises.push(getUserName());
-    Q.all(promises).then(function (names) {
+    Q.all(promises).done(function (names) {
         console.log("Names: ", names);
     });
 })();
