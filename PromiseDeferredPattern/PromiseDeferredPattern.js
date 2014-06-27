@@ -38,4 +38,3 @@
 
     getUserName().then(successHandler, errorHandler, processHandler);
 })();
-
